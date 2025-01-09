@@ -1,0 +1,12 @@
+services:
+    ctf_manager:
+        privileged: true
+        build:
+            context: .
+        ports:
+            - "5000:5000"
+            - "30000-30150:30000-30150"
+        environment:
+            - PORT_RANGE_START=30000
+            - PORT_RANGE_STOP=30150
+            - CTF_FLAG=CTFkom{this_is_a_fake_flag}

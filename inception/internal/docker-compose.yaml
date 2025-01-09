@@ -1,0 +1,13 @@
+version: '3'
+services:
+    inception:
+        privileged: true
+        build:
+            context: .
+        ports:
+            - "22:22"
+        environment:
+            - SSH_PASSWORD=${SSH_PASSWORD}
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock:Z
+            - /usr/local/bin/docker:/usr/bin/docker:ro

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTF Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>CTF Manager</h1>
+    <!-- Author : Tinius  -->
+    <p>This is <strong>CTF INFRASTRUCTURE</strong>, do not attack this port or website. Attacking this website or port will result in a <strong>ban</strong><br></p>
+    <p>This is website is only for spawning a container for you to connect to.
+        <br>
+        Entering participant name will start a container for you to connect to.        <br>
+
+        Remember the name and try to make it unique if you want to be able to connect to the same container again, think of the name as a password for you container.
+    </p>
+
+    <h2>Check Your Container</h2>
+
+    <form action="{{ url_for('check_container') }}" method="POST">
+        <label for="participant">Name/Unique identifier:</label>
+        <input type="text" id="participant" name="participant" required>
+        <button type="submit">Start or check container</button>
+    </form>
+</body>
+</html>

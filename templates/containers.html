@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Running Containers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Running Containers</h1>
+
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul>
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    {% if containers %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Participant</th>
+                    <th>Container Name</th>
+                    <th>Port</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for participant, container in containers.items() %}
+                    <tr>
+                        <td>{{ participant }}</td>
+                        <td>{{ container.container_name }}</td>
+                        <td>{{ container.port }}</td>
+                        <td>
+                            <form action="{{ url_for('stop_container', participant=participant) }}" method="POST">
+                                <button type="submit">Stop</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No running containers</p>
+    {% endif %}
+
+    <br>
+    <form action="{{ url_for('stop_all') }}" method="POST">
+        <button type="submit">Stop All Containers</button>
+    </form>
+
+    <br>
+    <a href="{{ url_for('index') }}">Go Back</a>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CTF Container</title>
+</head>
+<body>
+    <h1>Container for {{ participant }}</h1>
+    <p>Connect to your container using SSH:</p>
+    <pre>ssh ctfuser@<strong>this_sites_ip</strong> -p {{ container.port }}</pre>
+    <p>May take up to 2 minute for the container to start.<br>
+    If you get when: <strong>Connection closed by ::1 port {{ container.port }}</strong> when trying to connect you need to wait longer.</p>
+    <p>SSH Password: <strong>{{ container.password }}</strong></p>
+    <form action="{{ url_for('stop_container', participant=participant) }}" method="post">
+        <button type="submit">Stop Container</button>
+    </form>
+</body>
+</html>
